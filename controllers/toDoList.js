@@ -4,9 +4,9 @@ function ToDoList() {
 
 	var vm = this;
 
-  vm.myList = [{'text': 'foo'}];
+  vm.myList = [{'text': 'foo', 'done': true}];
   vm.addTask = function () {
-    vm.myList.push({'text': vm.inputText});
+    vm.myList.push({'text': vm.inputText, 'done': false});
     vm.inputText = '';
   };
 
