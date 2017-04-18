@@ -1,49 +1,45 @@
 <!doctype html>
 <html ng-app="app">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>My AngularJS App</title>
-</head>
-<body>
-
-
-	<div ng-controller="MyCtrl as crtl">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>My AngularJS App</title>
+	</head>
+	<body>
+		<div ng-controller="MyCtrl as crtl">
+			Hola, {{crtl.service.name}}. <br>
+			<input type="text" ng-model="crtl.service.name">
+			<button ng-click="crtl.hola()">Saludar</button>
+		</div>
+		<hr>
+		<div ng-controller="MyCarrito as carr">
+			Carrito de {{carr.service.name}}. <br>
+			<input type="text" ng-model="carr.service.name">
+		</div>
 		
-		Hola, {{crtl.service.name}}. <br>
-	
-		<input type="text" ng-model="crtl.service.name">
-		
-		<button ng-click="crtl.hola()">Saludar</button>
-		
-	</div>
-	
-	<hr>
-	
-	<div ng-controller="MyCarrito as carr">
-		
-		CArrito de {{carr.service.name}}. <br>
-		
-		<input type="text" ng-model="carr.service.name">
-		
-	</div>
+		<div ng-controller="ToDoList as tdl">
+			<h1>To do list</h1>
+			<input type="text" ng-model="tdl.inputText"><button ng-click="tdl.addTask()">+ Add task</button>
+			<ul ng-repeat="item in tdl.myList">
+				<li ng-init="editMode = false;">
+					<span ng-show="!editMode">{{item.text}}</span>
+					<input ng-show="editMode" type="text" ng-model="editInputText">
+					<button ng-show="!editMode" ng-click="editMode = true; editInputText = item.text;">* Edit task</button>
+					<button ng-show="editMode" ng-click="editMode = false; tdl.updateTask(item, editInputText)">* Save task</button>
+					<button ng-show="!editMode" ng-click="tdl.removeTask(item)">- Remove task</button>
+				</li>
+			</ul>
+		</div>
 
-
-	
-	<!-- AngularJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-
-	
-	<!-- App -->
-	<script type="text/javascript" src="./js/app.js"></script>
-
-    <!-- Services -->
-    <script type="text/javascript" src="./services/session.js"></script>
-    
-    <!-- Controllers -->
-    <script type="text/javascript" src="./controllers/my-controller.js"></script>
-    <script type="text/javascript" src="./controllers/carrito.js"></script>
-
-
-</body>
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<!-- App -->
+		<script type="text/javascript" src="./js/app.js"></script>
+		<!-- Services -->
+		<script type="text/javascript" src="./services/session.js"></script>
+		<!-- Controllers -->
+		<script type="text/javascript" src="./controllers/my-controller.js"></script>
+		<script type="text/javascript" src="./controllers/carrito.js"></script>
+		<script type="text/javascript" src="./controllers/toDoList.js"></script>
+	</body>
 </html>
